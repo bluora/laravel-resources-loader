@@ -2,6 +2,7 @@
 
 namespace ResourcesLoader;
 
+use Config;
 use Roumen\Asset\Asset;
 
 class Resource
@@ -42,13 +43,13 @@ class Resource
         }
         if (is_array($asset_name)) {
             foreach ($asset_name as $name) {
-                self::load($name);
+                self::container($name);
             }
         } else {
             $asset_name = ucfirst($asset_name);
-            $file = __DIR__."/".$asset_name.".php";
+            $file = Config::get('resources.containers').$asset_name.'.php';
             if (file_exists($file)) {
-                $class_name = 'App\\Assets\\'.$asset_name;
+                $class_name = Config::get('resources.namespace').$asset_name;
                 if (class_exists($class_name)) {
                     new $class_name();
                 }
