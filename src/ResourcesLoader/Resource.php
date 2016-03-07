@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Assets;
+namespace ResourcesLoader;
 
-use Asset;
+use Roumen\Asset\Asset;
 
 class Resource
 {
