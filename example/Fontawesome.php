@@ -2,6 +2,8 @@
 
 namespace App\Assets;
 
+use Resource;
+
 class Fontawesome
 {
     public function __construct()

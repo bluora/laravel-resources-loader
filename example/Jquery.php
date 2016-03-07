@@ -2,6 +2,8 @@
 
 namespace App\Assets;
 
+use Resource;
+
 class Jquery
 {
     public function __construct()

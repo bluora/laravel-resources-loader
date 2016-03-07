@@ -2,6 +2,8 @@
 
 namespace App\Assets;
 
+use Resource;
+
 class Bootstrap
 {
     public function __construct()
