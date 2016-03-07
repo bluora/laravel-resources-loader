@@ -1,5 +1,5 @@
 {
-    "name": "bluora/laravel-resource-loader",
+    "name": "bluora/laravel-resources-loader",
     "description": "Provides a simplified approach to loading assets",
     "keywords": ["laravel","illuminate","assets"],
     "license": "MIT",
