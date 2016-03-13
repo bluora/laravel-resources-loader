@@ -7,11 +7,11 @@ use Roumen\Asset\Asset;
 
 class Resource
 {
-
     /**
-     * Add the asset using our version of the exliser loader
+     * Add the asset using our version of the exliser loader.
      *
-     * @param  string $file
+     * @param string $file
+     *
      * @return return string
      */
     public static function add($file)
@@ -20,18 +20,19 @@ class Resource
     }
 
     /**
-     * Add the asset first using our version of the exliser loader
+     * Add the asset first using our version of the exliser loader.
      *
-     * @param  string $file
+     * @param string $file
+     *
      * @return return string
      */
     public static function addFirst($file)
     {
         Asset::addFirst(self::elixir($file));
     }
-    
+
     /**
-     * Load an assets container (it will load the individual files)
+     * Load an assets container (it will load the individual files).
      *
      * @return void
      */
@@ -58,11 +59,12 @@ class Resource
     }
 
     /**
-     * Load local files for a given controller
+     * Load local files for a given controller.
      *
-     * @param  string $type
-     * @param  string $file
-     * @param  string $class
+     * @param string $type
+     * @param string $file
+     * @param string $class
+     *
      * @return void
      */
     public static function controller($type, $file, $class)
@@ -76,9 +78,10 @@ class Resource
 
     /**
      * Override standard elixir to return standard url if
-     * the exception is made (eg the file isn't versioned)
+     * the exception is made (eg the file isn't versioned).
      *
-     * @param  string $file
+     * @param string $file
+     *
      * @return return string
      */
     public static function elixir($file)
