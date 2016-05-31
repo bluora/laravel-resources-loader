@@ -36,31 +36,59 @@ class Resource
      *
      * @return void
      */
-    public static function container()
+    public static function container($container_settings)
     {
-        $asset_name = func_get_args();
-        if (is_array($asset_name) && count($asset_name) == 1) {
-            $asset_name = array_shift($asset_name);
+        self::loadContainer($container_settings);
+    }
+
+    /**
+     * Load an assets container (it will load the individual files).
+     *
+     * @return void
+     */
+    public static function containers()
+    {
+        $container_list = func_get_args()[0];
+        foreach ($container_list as $container_settings) {
+            self::loadContainer($container_settings);
+        }       
+    }
+
+    /**
+     * Load an assets container (it will load the individual files).
+     *
+     * @return void
+     */
+    private static function loadContainer($asset_settings)
+    {
+        if (is_array($asset_settings)) {
+            $asset_name = array_shift($asset_settings);
+        } else {
+            $asset_name = $asset_settings;
+            $asset_settings = [];
         }
-        if (is_array($asset_name)) {
-            foreach ($asset_name as $name) {
-                self::container($name);
+
+        $asset_name = ucfirst($asset_name);
+        $class_name = false;
+
+        if (($class_settings = Config::get('resources.packages.'.$asset_name))) {
+            if (!is_array($class_settings)) {
+                $class_settings = [$class_settings];
+            }
+            $class_name = array_shift($class_settings);
+            if (count($asset_settings) == 0) {
+                $asset_settings = $class_settings;
             }
         } else {
-            $asset_name = ucfirst($asset_name);
-            if ($class_name = Config::get('resources.packages.'.$asset_name)) {
-                if (class_exists($class_name)) {
-                    new $class_name();
-                    return;
-                }
-            }
             $file = Config::get('resources.containers').$asset_name.'.php';
             if (file_exists($file)) {
                 $class_name = Config::get('resources.namespace').$asset_name;
-                if (class_exists($class_name)) {
-                    new $class_name();
-                }
+                $class_settings = $asset_settings;
             }
+        }
+
+        if ($class_name !== false && class_exists($class_name)) {
+            new $class_name(...$class_settings);
         }
     }
 

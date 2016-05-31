@@ -2,12 +2,11 @@
 
 namespace ResourcesLoader;
 
-use Resource;
-
 class Jquery
 {
-    public function __construct()
+    public function __construct($version = false)
     {
-        Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js');
+        $version = (empty($version)) ? '2.2.4' : $version;
+        Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery.min.js');
     }
 }

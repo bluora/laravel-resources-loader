@@ -4,7 +4,7 @@ return [
     'namespace'  => 'App\\Assets\\',
     'containers' => app_path().'/Assets/',
     'packages' => [
-        'Jquery' => 'ResourcesLoader\Jquery',
-        'Fontawesome' => 'ResourcesLoader\Fontawesome'
+        'Jquery' => ['ResourcesLoader\Jquery', '2.2.4'],
+        'Fontawesome' => ['ResourcesLoader\Fontawesome', '4.6.3']
     ]
 ];
