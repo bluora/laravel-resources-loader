@@ -48,6 +48,12 @@ class Resource
             }
         } else {
             $asset_name = ucfirst($asset_name);
+            if ($class_name = Config::get('resources.packages.'.$asset_name)) {
+                if (class_exists($class_name)) {
+                    new $class_name();
+                    return;
+                }
+            }
             $file = Config::get('resources.containers').$asset_name.'.php';
             if (file_exists($file)) {
                 $class_name = Config::get('resources.namespace').$asset_name;
