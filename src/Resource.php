@@ -48,10 +48,13 @@ class Resource
      */
     public static function containers()
     {
-        $container_list = func_get_args()[0];
-        foreach ($container_list as $container_settings) {
-            self::loadContainer($container_settings);
-        }       
+        $arguments = func_get_args();
+        if (isset($arguments[0])) {
+            $container_list = $arguments[0];
+            foreach ($container_list as $container_settings) {
+                self::loadContainer($container_settings);
+            }
+        } 
     }
 
     /**
@@ -68,16 +71,20 @@ class Resource
             $asset_settings = [];
         }
 
-        $asset_name = ucfirst($asset_name);
+        $asset_name = ucfirst(strtolower($asset_name));
         $class_name = false;
 
-        if (($class_settings = Config::get('resources.packages.'.$asset_name))) {
+        $packages = Config::get('resources.packages');
+        $class_settings = [];
+
+        if (isset($packages[$asset_name])) {
+            $class_settings = $packages[$asset_name];
             if (!is_array($class_settings)) {
                 $class_settings = [$class_settings];
             }
             $class_name = array_shift($class_settings);
-            if (count($asset_settings) == 0) {
-                $asset_settings = $class_settings;
+            if (count($class_settings) == 0) {
+                $class_settings = $asset_settings;
             }
         } else {
             $file = Config::get('resources.containers').$asset_name.'.php';
@@ -120,6 +127,9 @@ class Resource
      */
     public static function elixir($file)
     {
+        if (substr($file, 0, 4) === 'http') {
+            return $file;
+        }
         try {
             return elixir($file);
         } catch (\InvalidArgumentException $e) {
