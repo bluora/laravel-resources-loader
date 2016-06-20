@@ -14,9 +14,9 @@ class Resource
      *
      * @return return string
      */
-    public static function add($file)
+    public static function add($file, $params = 'footer', $onUnknownExtension = false)
     {
-        Asset::add(self::elixir($file));
+        Asset::add(self::elixir($file), $params, $onUnknownExtension);
     }
 
     /**
@@ -26,16 +26,34 @@ class Resource
      *
      * @return return string
      */
-    public static function addFirst($file)
+    public static function addFirst($file, $params = 'footer', $onUnknownExtension = false)
     {
-        Asset::addFirst(self::elixir($file));
+        Asset::addFirst(self::elixir($file), $params, $onUnknownExtension);
     }
 
     /**
-     * Load an assets container (it will load the individual files).
+     * Add new asset after another asset in its array
+     *
+     * @param string $a
+     * @param string $b
+     * @param string/array $params
      *
      * @return void
-     */
+    */
+    public static function addAfter($file, $b, $params = 'footer', $onUnknownExtension = false)
+    {
+        Asset::addAfter(self::elixir($file), $b, $params, $onUnknownExtension);
+    }
+
+    /**
+     * Add new asset after another asset in its array
+     *
+     * @param string $a
+     * @param string $b
+     * @param string/array $params
+     *
+     * @return void
+    */
     public static function container($container_settings)
     {
         self::loadContainer($container_settings);
@@ -102,18 +120,22 @@ class Resource
     /**
      * Load local files for a given controller.
      *
-     * @param string $type
+     * @param array $file_extensions
      * @param string $file
      * @param string $class
      *
      * @return void
      */
-    public static function controller($type, $file, $class)
+    public static function controller($file_extensions, $file)
     {
-        $source_folder = strtolower(str_replace(['App/Http/Controllers/', 'Controller'], '', str_replace('\\', '/', $class)));
-        $file_name = $type.'/'.$source_folder.'/'.$file.'.'.$type;
-        if (file_exists(public_path().'/'.$file_name)) {
-            self::add(self::elixir($file_name));
+        if (!is_array($file_extensions)) {
+            $file_extensions = [$file_extensions];
+        }
+        foreach ($file_extensions as $extension) {
+            $file_name = str_replace('.', '/', $file).'.'.$extension;
+            if (file_exists(public_path().'/assets/'.$file_name)) {
+                self::add($file_name);
+            }
         }
     }
 
@@ -131,9 +153,19 @@ class Resource
             return $file;
         }
         try {
-            return elixir($file);
+            if (env('APP_ASSET_SOURCE', 'build') === 'build') {
+                $elixir_path = elixir($file);
+                return $elixir_path;
+            }  else {
+                return env('APP_ASSET_SOURCE').'/'.$file;
+            }
         } catch (\InvalidArgumentException $e) {
-            return $file;
+            if (file_exists(public_path().'/'.$file)) {
+                return $file;
+            } elseif (file_exists(public_path().'/assets/'.$file)) {
+                return '/assets/'.$file;
+            }
         }
+        return '';
     }
 }
