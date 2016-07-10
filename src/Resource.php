@@ -11,12 +11,37 @@ class Resource
      * Add the asset using our version of the exliser loader.
      *
      * @param string $file
-     *
-     * @return return string
+     * @param string $params
+     * @param boolean $onUnknownExtension     *
+     * @return void
      */
     public static function add($file, $params = 'footer', $onUnknownExtension = false)
     {
         Asset::add(self::elixir($file), $params, $onUnknownExtension);
+    }
+
+    /**
+     * Add raw script to page.
+     *
+     * @param string $style
+     * @param string $params
+     * @return void
+     */
+    public static function addScript($script, $params = 'footer')
+    {
+        Asset::addScript($script, $params);
+    }
+
+    /**
+     * Add raw styling to page.
+     *
+     * @param string $style
+     * @param string $params
+     * @return void
+     */
+    public static function addStyle($style, $params = 'header')
+    {
+        Asset::addStyle($style, $params);
     }
 
     /**
@@ -133,8 +158,24 @@ class Resource
         }
         foreach ($file_extensions as $extension) {
             $file_name = str_replace('.', '/', $file).'.'.$extension;
-            if (file_exists(public_path().'/assets/'.$file_name)) {
-                self::add($file_name);
+
+            if (env('APP_ENV') == 'local') {
+                $file_path = dirname(resource_path().'/views/'.$file_name);
+                $file_path .= '/'.$extension.'/'.basename($file_name);
+            } else {
+                $file_path = public_path().'/assets/'.$file_name;
+            }
+
+            if (file_exists($file_path)) {
+                if (env('APP_ENV') == 'local') {
+                    if ($extension == 'js') {
+                        self::addScript(file_get_contents($file_path));
+                    } else {
+                        self::addStyle(file_get_contents($file_path));
+                    }
+                } else {
+                    self::add($file_name);
+                }
             }
         }
     }
