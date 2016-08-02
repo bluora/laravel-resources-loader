@@ -33,6 +33,18 @@ class Resource
     }
 
     /**
+     * Reverse the order of scripts.
+     *
+     * @return void
+     */
+    public static function reverseStylesOrder($params = 'footer')
+    {
+        if (isset(Asset::$scripts[$params])) {
+            Asset::$scripts[$params] = array_reverse(Asset::$scripts[$params], true);
+        }
+    }
+
+    /**
      * Add raw styling to page.
      *
      * @param string $style
@@ -168,10 +180,12 @@ class Resource
 
             if (file_exists($file_path)) {
                 if (env('APP_ENV') == 'local') {
+                    $contents = file_get_contents($file_path);
+                    $contents = "/* ".$file_name." */ \n\n".$contents;
                     if ($extension == 'js') {
-                        self::addScript(file_get_contents($file_path));
+                        self::addScript($contents);
                     } else {
-                        self::addStyle(file_get_contents($file_path));
+                        self::addStyle($contents);
                     }
                 } else {
                     self::add($file_name);
