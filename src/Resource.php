@@ -12,7 +12,8 @@ class Resource
      *
      * @param string $file
      * @param string $params
-     * @param boolean $onUnknownExtension     *
+     * @param bool   $onUnknownExtension *
+     *
      * @return void
      */
     public static function add($file, $params = 'footer', $onUnknownExtension = false)
@@ -25,6 +26,7 @@ class Resource
      *
      * @param string $style
      * @param string $params
+     *
      * @return void
      */
     public static function addScript($script, $params = 'footer')
@@ -49,6 +51,7 @@ class Resource
      *
      * @param string $style
      * @param string $params
+     *
      * @return void
      */
     public static function addStyle($style, $params = 'header')
@@ -69,28 +72,28 @@ class Resource
     }
 
     /**
-     * Add new asset after another asset in its array
+     * Add new asset after another asset in its array.
      *
-     * @param string $a
-     * @param string $b
+     * @param string       $a
+     * @param string       $b
      * @param string/array $params
      *
      * @return void
-    */
+     */
     public static function addAfter($file, $b, $params = 'footer', $onUnknownExtension = false)
     {
         Asset::addAfter(self::elixir($file), $b, $params, $onUnknownExtension);
     }
 
     /**
-     * Add new asset after another asset in its array
+     * Add new asset after another asset in its array.
      *
-     * @param string $a
-     * @param string $b
+     * @param string       $a
+     * @param string       $b
      * @param string/array $params
      *
      * @return void
-    */
+     */
     public static function container($container_settings)
     {
         self::loadContainer($container_settings);
@@ -109,7 +112,7 @@ class Resource
             foreach ($container_list as $container_settings) {
                 self::loadContainer($container_settings);
             }
-        } 
+        }
     }
 
     /**
@@ -157,7 +160,7 @@ class Resource
     /**
      * Load local files for a given controller.
      *
-     * @param array $file_extensions
+     * @param array  $file_extensions
      * @param string $file
      * @param string $class
      *
@@ -181,7 +184,7 @@ class Resource
             if (file_exists($file_path)) {
                 if (env('APP_ENV') == 'local') {
                     $contents = file_get_contents($file_path);
-                    $contents = "/* ".$file_name." */ \n\n".$contents;
+                    $contents = '/* '.$file_name." */ \n\n".$contents;
                     if ($extension == 'js') {
                         self::addScript($contents);
                     } else {
@@ -210,8 +213,9 @@ class Resource
         try {
             if (env('APP_ASSET_SOURCE', 'build') === 'build') {
                 $elixir_path = elixir($file);
+
                 return $elixir_path;
-            }  else {
+            } else {
                 return '/'.env('APP_ASSET_SOURCE').'/'.$file;
             }
         } catch (\InvalidArgumentException $e) {
@@ -221,6 +225,7 @@ class Resource
                 return '/assets/'.$file;
             }
         }
+
         return '';
     }
 }
