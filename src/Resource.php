@@ -7,6 +7,14 @@ use Roumen\Asset\Asset;
 
 class Resource
 {
+
+    /**
+     * Track loaded inline files.
+     *
+     * @var array
+     */
+    private static $loaded_inline = [];
+
     /**
      * Add the asset using our version of the exliser loader.
      *
@@ -183,12 +191,15 @@ class Resource
 
             if (file_exists($file_path)) {
                 if (env('APP_ENV') == 'local') {
-                    $contents = file_get_contents($file_path);
-                    $contents = '/* '.$file_name." */ \n\n".$contents;
-                    if ($extension == 'js') {
-                        self::addScript($contents);
-                    } else {
-                        self::addStyle($contents);
+                    if (!isset(self::$loaded_inline[$file_path])) {
+                        $contents = file_get_contents($file_path);
+                        $contents = '/* '.$file_name." */ \n\n".$contents;
+                        if ($extension == 'js') {
+                            self::addScript($contents);
+                        } else {
+                            self::addStyle($contents);
+                        }
+                        self::$loaded_inline[$file_path] = true;
                     }
                 } else {
                     self::add($file_name);
