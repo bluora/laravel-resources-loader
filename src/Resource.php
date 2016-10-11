@@ -179,6 +179,7 @@ class Resource
         if (!is_array($file_extensions)) {
             $file_extensions = [$file_extensions];
         }
+        $manifest = config('rev-manifest', []);
         foreach ($file_extensions as $extension) {
             $file_name = str_replace('.', '/', $file).'.'.$extension;
 
@@ -189,7 +190,7 @@ class Resource
                 $file_path = public_path().'/assets/'.$file_name;
             }
 
-            if (file_exists($file_path)) {
+            if (isset($manifest[$file_path]) || file_exists($file_path)) {
                 if (env('APP_ENV') == 'local') {
                     if (!isset(self::$loaded_inline[$file_path])) {
                         $contents = file_get_contents($file_path);
