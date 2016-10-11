@@ -190,7 +190,7 @@ class Resource
                 $file_path = public_path().'/assets/'.$file_name;
             }
 
-            if (isset($manifest[$file_path]) || file_exists($file_path)) {
+            if (isset($manifest[$file_name]) || file_exists($file_path)) {
                 if (env('APP_ENV') == 'local') {
                     if (!isset(self::$loaded_inline[$file_path])) {
                         $contents = file_get_contents($file_path);
