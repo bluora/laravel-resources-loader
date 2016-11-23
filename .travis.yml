@@ -11,4 +11,4 @@ matrix:
   - php: hhvm
 addons:
   code_climate:
-      repo_token: 
+      repo_token: 9dca9938a0bf9373b2744e254d919b55a6593df3d84c52f3158c7dc1c9075f42

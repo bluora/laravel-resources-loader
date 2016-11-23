@@ -40,23 +40,13 @@ class ServiceProvider extends BaseServiceProvider
         ]);
 
         blade::directive('captureScript', function ($name) {
-            if (!empty($name)) {
-                $name = str_replace('$', '', $name);
-                $name = substr($name, 1, -1);
-            } else {
-                $name = 'inline';
-            }
+            $name = empty($name) ? 'inline' : substr(str_replace('$', '', $name), 1, -1);
 
             return "<?php Resource::addScript(ob_get_clean(), '".$name."'); ?>";
         });
 
         blade::directive('captureStyle', function ($name) {
-            if (!empty($name)) {
-                $name = str_replace('$', '', $name);
-                $name = substr($name, 1, -1);
-            } else {
-                $name = 'header';
-            }
+            $name = empty($name) ? 'header' : substr(str_replace('$', '', $name), 1, -1);
 
             return "<?php Resource::addStyle(ob_get_clean(), '".$name."'); ?>";
         });
