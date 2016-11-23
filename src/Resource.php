@@ -1,6 +1,6 @@
 <?php
 
-namespace ResourcesLoader;
+namespace Bluora\LaravelResourcesLoader;
 
 use Config;
 use Roumen\Asset\Asset;
@@ -140,7 +140,7 @@ class Resource
         $asset_name = ucfirst(strtolower($asset_name));
         $class_name = false;
 
-        $packages = Config::get('resources.packages');
+        $packages = Config::get('resource.packages');
         $class_settings = [];
 
         if (isset($packages[$asset_name])) {
@@ -153,9 +153,9 @@ class Resource
                 $class_settings = $asset_settings;
             }
         } else {
-            $file = Config::get('resources.containers').$asset_name.'.php';
+            $file = Config::get('resource.containers').$asset_name.'.php';
             if (file_exists($file)) {
-                $class_name = Config::get('resources.namespace').$asset_name;
+                $class_name = Config::get('resource.namespace').$asset_name;
                 $class_settings = $asset_settings;
             }
         }

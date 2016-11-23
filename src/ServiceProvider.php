@@ -1,19 +1,41 @@
 <?php
 
-namespace ResourcesLoader;
+namespace Bluora\LaravelResourcesLoader;
 
 use Blade;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-class BladeDirectiveServiceProvider extends ServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
+
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__.'/../../config/config.php', config_path('resource.php'));
+
+        $this->app->bind('resource', function () {
+            return new Resource();
+        });
+    }
+
+    /**
+     * Bootstrap the application events.
      *
      * @return void
      */
     public function boot()
     {
+
         blade::directive('capturestart', function () {
             return '<?php ob_start(); ?>';
         });
@@ -61,12 +83,12 @@ class BladeDirectiveServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register any application services.
+     * Get the services provided by the provider.
      *
-     * @return void
+     * @return array
      */
-    public function register()
+    public function provides()
     {
-        //
+        return ['resource'];
     }
 }

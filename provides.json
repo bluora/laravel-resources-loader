@@ -1,0 +1,11 @@
+{
+  "providers": [
+    "Bluora\\LaravelResourcesLoader\\ResourceServiceProvider"
+  ],
+  "aliases": [
+    {
+      "alias": "Resource",
+      "facade": "Bluora\\LaravelResourcesLoader\\ResourceFacade"
+    }
+  ]
+}
