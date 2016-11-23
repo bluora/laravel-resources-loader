@@ -6,6 +6,15 @@ use Config;
 
 class Jqueryui
 {
+    /**
+     * Load jQuery UI.
+     *
+     * @param boolean $version
+     *
+     * @return void
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     */
     public function __construct($version = false)
     {
         Resource::container('Jquery');

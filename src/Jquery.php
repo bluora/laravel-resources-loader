@@ -6,6 +6,15 @@ use Config;
 
 class Jquery
 {
+    /**
+     * Load jQuery.
+     *
+     * @param boolean $version
+     *
+     * @return void
+     *
+     * @SuppressWarnings(PHPMD.BooleanArgumentFlag)
+     */
     public function __construct($version = false)
     {
         if (!env('APP_CDN', true)) {
