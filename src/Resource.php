@@ -7,7 +7,6 @@ use Roumen\Asset\Asset;
 
 class Resource
 {
-
     /**
      * Track loaded inline files.
      *
@@ -20,7 +19,7 @@ class Resource
      *
      * @param string $file
      * @param string $params
-     * @param bool   $onUnknownExtension *
+     * @param bool   $onUnknownExtension
      *
      * @return void
      */
@@ -84,7 +83,7 @@ class Resource
      *
      * @param string       $a
      * @param string       $b
-     * @param string/array $params
+     * @param string|array $params
      *
      * @return void
      */
@@ -98,7 +97,7 @@ class Resource
      *
      * @param string       $a
      * @param string       $b
-     * @param string/array $params
+     * @param string|array $params
      *
      * @return void
      */

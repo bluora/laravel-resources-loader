@@ -21,7 +21,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../../config/config.php', config_path('resource.php'));
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'resource');
 
         $this->app->bind('resource', function () {
             return new Resource();
@@ -35,17 +35,9 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function boot()
     {
-
-        blade::directive('capturestart', function () {
-            return '<?php ob_start(); ?>';
-        });
-
-        blade::directive('capturestop', function ($name) {
-            $name = str_replace('$', '', $name);
-            $name = substr($name, 1, -1);
-
-            return '<?php $'.$name.' = ob_get_clean(); ?>';
-        });
+        $this->publishes([
+            __DIR__.'/../config/config.php' => config_path('resource.php'),
+        ]);
 
         blade::directive('captureScript', function ($name) {
             if (!empty($name)) {
