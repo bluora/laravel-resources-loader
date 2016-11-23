@@ -5,7 +5,7 @@ namespace Bluora\LaravelResourcesLoader;
 use Config;
 use Roumen\Asset\Asset;
 
-class Resource
+class Resource extends Asset
 {
     /**
      * Track loaded inline files.
