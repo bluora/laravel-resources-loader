@@ -5,14 +5,14 @@ namespace Bluora\LaravelResourcesLoader;
 use Config;
 use Roumen\Asset\Asset;
 
-class Resource extends Asset
+class Resource
 {
     /**
      * Track loaded inline files.
      *
      * @var array
      */
-    private static $loaded_inline = [];
+    private $loaded_inline = [];
 
     /**
      * Add the asset using our version of the exliser loader.
@@ -23,9 +23,9 @@ class Resource extends Asset
      *
      * @return void
      */
-    public static function add($file, $params = 'footer', $onUnknownExtension = false)
+    public function add($file, $params = 'footer', $onUnknownExtension = false)
     {
-        Asset::add(self::elixir($file), $params, $onUnknownExtension);
+        Asset::add($this->elixir($file), $params, $onUnknownExtension);
     }
 
     /**
@@ -36,7 +36,7 @@ class Resource extends Asset
      *
      * @return void
      */
-    public static function addScript($script, $params = 'footer')
+    public function addScript($script, $params = 'footer')
     {
         Asset::addScript($script, $params);
     }
@@ -46,7 +46,7 @@ class Resource extends Asset
      *
      * @return void
      */
-    public static function reverseStylesOrder($params = 'footer')
+    public function reverseStylesOrder($params = 'footer')
     {
         if (isset(Asset::$scripts[$params])) {
             Asset::$scripts[$params] = array_reverse(Asset::$scripts[$params], true);
@@ -61,7 +61,7 @@ class Resource extends Asset
      *
      * @return void
      */
-    public static function addStyle($style, $params = 'header')
+    public function addStyle($style, $params = 'header')
     {
         Asset::addStyle($style, $params);
     }
@@ -73,9 +73,9 @@ class Resource extends Asset
      *
      * @return return string
      */
-    public static function addFirst($file, $params = 'footer', $onUnknownExtension = false)
+    public function addFirst($file, $params = 'footer', $onUnknownExtension = false)
     {
-        Asset::addFirst(self::elixir($file), $params, $onUnknownExtension);
+        Asset::addFirst($this->elixir($file), $params, $onUnknownExtension);
     }
 
     /**
@@ -87,23 +87,81 @@ class Resource extends Asset
      *
      * @return void
      */
-    public static function addAfter($file, $b, $params = 'footer', $onUnknownExtension = false)
+    public function addAfter($file1, $file2, $params = 'footer', $onUnknownExtension = false)
     {
-        Asset::addAfter(self::elixir($file), $b, $params, $onUnknownExtension);
+        Asset::addAfter($this->elixir($file1), $this->elixir($file2), $params, $onUnknownExtension);
+    }
+
+    /**
+     * Return CSS.
+     *
+     * @param array $arguments
+     *
+     * @return string
+     */
+    public function css(...$arguments)
+    {
+        return Asset::css(...$arguments);
+    }
+
+    /**
+     * Return LESS.
+     *
+     * @param array $arguments
+     *
+     * @return string
+     */
+    public function less(...$arguments)
+    {
+        return Asset::less(...$arguments);
+    }
+
+    /**
+     * Return styles.
+     *
+     * @param array $arguments
+     *
+     * @return string
+     */
+    public function styles(...$arguments)
+    {
+        return Asset::styles(...$arguments);
+    }
+
+    /**
+     * Return javascript.
+     *
+     * @param array $arguments
+     *
+     * @return string
+     */
+    public function js(...$arguments)
+    {
+        return Asset::js(...$arguments);
+    }
+
+    /**
+     * Return scripts.
+     *
+     * @param array $arguments
+     *
+     * @return string
+     */
+    public function scripts(...$arguments)
+    {
+        return Asset::scripts(...$arguments);
     }
 
     /**
      * Add new asset after another asset in its array.
      *
-     * @param string       $a
-     * @param string       $b
-     * @param string|array $params
+     * @param array $container_settings
      *
      * @return void
      */
-    public static function container($container_settings)
+    public function container($container_settings)
     {
-        self::loadContainer($container_settings);
+        $this->loadContainer($container_settings);
     }
 
     /**
@@ -111,13 +169,12 @@ class Resource extends Asset
      *
      * @return void
      */
-    public static function containers()
+    public function containers(...$arguments)
     {
-        $arguments = func_get_args();
         if (isset($arguments[0])) {
             $container_list = $arguments[0];
             foreach ($container_list as $container_settings) {
-                self::loadContainer($container_settings);
+                $this->loadContainer($container_settings);
             }
         }
     }
@@ -139,7 +196,7 @@ class Resource extends Asset
         $asset_name = ucfirst(strtolower($asset_name));
         $class_name = false;
 
-        $packages = Config::get('resource.packages');
+        $packages = config('resource.packages');
         $class_settings = [];
 
         if (isset($packages[$asset_name])) {
@@ -152,9 +209,9 @@ class Resource extends Asset
                 $class_settings = $asset_settings;
             }
         } else {
-            $file = Config::get('resource.containers').$asset_name.'.php';
+            $file = config('resource.containers').$asset_name.'.php';
             if (file_exists($file)) {
-                $class_name = Config::get('resource.namespace').$asset_name;
+                $class_name = config('resource.namespace').$asset_name;
                 $class_settings = $asset_settings;
             }
         }
@@ -173,7 +230,7 @@ class Resource extends Asset
      *
      * @return void
      */
-    public static function controller($file_extensions, $file)
+    public function controller($file_extensions, $file)
     {
         if (!is_array($file_extensions)) {
             $file_extensions = [$file_extensions];
@@ -191,18 +248,18 @@ class Resource extends Asset
 
             if (isset($manifest[$file_name]) || file_exists($file_path)) {
                 if (env('APP_ENV') == 'local') {
-                    if (!isset(self::$loaded_inline[$file_path])) {
+                    if (!isset($this->loaded_inline[$file_path])) {
                         $contents = file_get_contents($file_path);
                         $contents = '/* '.$file_name." */ \n\n".$contents;
                         if ($extension == 'js') {
-                            self::addScript($contents);
+                            $this->addScript($contents);
                         } else {
-                            self::addStyle($contents);
+                            $this->addStyle($contents);
                         }
-                        self::$loaded_inline[$file_path] = true;
+                        $this->loaded_inline[$file_path] = true;
                     }
                 } else {
-                    self::add($file_name);
+                    $this->add($file_name);
                 }
             }
         }
@@ -216,7 +273,7 @@ class Resource extends Asset
      *
      * @return return string
      */
-    public static function elixir($file)
+    public function elixir($file)
     {
         if (substr($file, 0, 4) === 'http') {
             return $file;

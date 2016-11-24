@@ -20,6 +20,13 @@
       <exclude>
         <directory suffix=".php">tests</directory>
         <directory suffix=".php">vendor</directory>
+        <directory suffix=".php">config</directory>
+        <directory suffix=".php">example</directory>
+        <file>src/Facade.php</file>
+        <file>src/Fontawesome.php</file>
+        <file>src/Jquery.php</file>
+        <file>src/Jqueryui.php</file>
+        <file>src/ServiceProvider.php</file>
       </exclude>
     </whitelist>
   </filter>

@@ -5,7 +5,8 @@ $env = [
 ];
 
 $rev = [
-    'style.css' => '/build/style.123456.css'
+    'style.css' => '/build/style.123456.css',
+    'extra.js' => '/build/extra.123456.js'
 ];
 
 function config()
