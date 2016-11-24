@@ -8,10 +8,9 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         syntaxCheck="false"
->
+         syntaxCheck="false">
     <testsuites>
-        <testsuite name="Larvel Model Json Column Test Suite">
+        <testsuite name="Laravel Resources Loader Test Suite">
             <directory suffix=".php">./tests/</directory>
         </testsuite>
     </testsuites>
@@ -24,4 +23,7 @@
       </exclude>
     </whitelist>
   </filter>
+  <logging>
+    <log type="coverage-clover" target="build/logs/clover.xml"/>
+  </logging>
 </phpunit>
