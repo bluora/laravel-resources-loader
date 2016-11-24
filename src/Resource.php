@@ -226,9 +226,9 @@ class Resource extends Asset
                 $elixir_path = elixir($file);
 
                 return $elixir_path;
-            } else {
-                return '/'.env('APP_ASSET_SOURCE').'/'.$file;
             }
+
+            return '/'.env('APP_ASSET_SOURCE').'/'.$file;
         } catch (\InvalidArgumentException $e) {
             if (file_exists(public_path().'/'.$file)) {
                 return $file;
