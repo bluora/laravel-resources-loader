@@ -44,6 +44,8 @@ class Resource
     /**
      * Reverse the order of scripts.
      *
+     * @param string $params
+     *
      * @return void
      */
     public function reverseStylesOrder($params = 'footer')
@@ -70,6 +72,8 @@ class Resource
      * Add the asset first using our version of the exliser loader.
      *
      * @param string $file
+     * @param string $params
+     * @param bool   $onUnknownExtension
      *
      * @return return string
      */
@@ -81,9 +85,10 @@ class Resource
     /**
      * Add new asset after another asset in its array.
      *
-     * @param string       $a
-     * @param string       $b
+     * @param string       $file1
+     * @param string       $file2
      * @param string|array $params
+     * @param bool         $onUnknownExtension
      *
      * @return void
      */
@@ -167,6 +172,8 @@ class Resource
     /**
      * Load an assets container (it will load the individual files).
      *
+     * @param array $arguments
+     *
      * @return void
      */
     public function containers(...$arguments)
@@ -181,6 +188,8 @@ class Resource
 
     /**
      * Load an assets container (it will load the individual files).
+     *
+     * @param array $asset_settings
      *
      * @return void
      */
@@ -226,7 +235,6 @@ class Resource
      *
      * @param array  $file_extensions
      * @param string $file
-     * @param string $class
      *
      * @return void
      */
