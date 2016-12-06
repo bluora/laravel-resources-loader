@@ -28,7 +28,7 @@ class Jqueryui
             return;
         }
 
-        $version = (empty($version)) ? Config::get('resources.version.JqueryUi') : $version;
+        $version = Res::version('JqueryUi', $version);
         Res::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/jquery-ui.min.js');
         Res::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/themes/'.$theme.'/jquery-ui.min.css');
     }

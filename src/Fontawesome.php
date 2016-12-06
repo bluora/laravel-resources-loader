@@ -24,7 +24,7 @@ class Fontawesome
             return;
         }
 
-        $version = (empty($version)) ? Config::get('resources.version.Fontawesome') : $version;
+        $version = Res::version('Fontawesome', $version);
         Res::add('https://maxcdn.bootstrapcdn.com/font-awesome/'.$version.'/css/font-awesome.min.css');
     }
 }

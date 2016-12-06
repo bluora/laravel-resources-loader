@@ -8,6 +8,16 @@ use Roumen\Asset\Asset;
 class Resource
 {
     /**
+     * Get the version of the given resource.
+     *
+     * @return string
+     */
+    public function version($name, $version = false)
+    {
+        return (empty($version)) ? Config::get('resource.version.'.$name) : $version;
+    }
+
+    /**
      * Track loaded inline files.
      *
      * @var array

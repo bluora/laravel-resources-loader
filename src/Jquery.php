@@ -24,7 +24,7 @@ class Jquery
             return;
         }
 
-        $version = (empty($version)) ? Config::get('resources.version.Jquery') : $version;
+        $version = Res::version('Jquery', $version);
         Res::addFirst('https://ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery.min.js');
     }
 }
