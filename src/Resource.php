@@ -314,4 +314,16 @@ class Resource
 
         return '';
     }
+
+    public static function http2()
+    {
+        foreach (Asset::$css as $file) {
+            header('Link: <'.$file.'>; rel=preload; as=style;', false);
+        }
+        foreach (Asset::$js as $section) {
+            foreach ($section as $file) {
+                header('Link: <'.$file.'>; rel=preload; as=script;', false);
+            }
+        }
+    }
 }
