@@ -270,14 +270,14 @@ class Resource
                         $contents = file_get_contents($file_path);
                         $contents = '/* '.$file_name." */ \n\n".$contents;
                         if ($extension == 'js') {
-                            $this->addScript($contents, 'header');
+                            $this->addScript($contents, 'inline');
                         } else {
                             $this->addStyle($contents);
                         }
                         $this->loaded_inline[$file_path] = true;
                     }
                 } else {
-                    $this->add($file_name, 'header');
+                    $this->add($file_name, 'ready');
                 }
             }
         }
