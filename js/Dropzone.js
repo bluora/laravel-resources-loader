@@ -1,5 +1,5 @@
 
-window.extensions_initializer['auto-init-dropzone-input'] = function() {
+window.extensions_initializer['auto-init-dropzone'] = function() {
     if ($(this).find('.dz-message').length == 0) {
         options = $(this).data('dropzone-options');
         if (options === '') {

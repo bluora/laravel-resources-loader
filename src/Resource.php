@@ -7,6 +7,8 @@ use Roumen\Asset\Asset;
 
 class Resource
 {
+    private static $containers = [];
+
     /**
      * Get the version of the given resource.
      *
@@ -205,7 +207,6 @@ class Resource
      */
     private static function loadContainer($class_settings)
     {
-
         if (is_array($class_settings)) {
             $asset_name = array_shift($class_settings);
         } else {
@@ -213,15 +214,14 @@ class Resource
             $class_settings = [];
         }
 
-        $asset_name = ucfirst(strtolower($asset_name));
         $class_name = false;
 
         if ($asset_details = config('resource.'.$asset_name, false)) {
             $class_name = array_get($asset_details, 0, false);
         }
 
-        if ($class_name !== false && class_exists($class_name)) {
-            new $class_name(...$class_settings);
+        if ($class_name !== false && !isset(self::$containers[$class_name])) {
+            self::$containers[$class_name] = new $class_name(...$class_settings);
         }
     }
 

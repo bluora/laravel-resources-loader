@@ -9,7 +9,7 @@ class Ladda
     public function __construct($version = false)
     {
         if (!env('APP_CDN', true)) {
-            Resource::add('vendor/ladda.spin.min.js');
+            Resource::add('vendor/spin.min.js');
             Resource::add('vendor/ladda.min.js');
             Resource::add('vendor/ladda.jquery.min.js');
             Resource::add('vendor/ladda-themeless.min.css');

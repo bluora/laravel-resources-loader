@@ -9,9 +9,9 @@ class PasswordComplexifyInput
     public function __construct($version = false)
     {
         if (!env('APP_CDN', true)) {
-            Resource::add('vendor/jquery.complexify.js');
-            Resource::add('vendor/jquery.complexify.banlist.js');
-            Resource::add('vendor/jquery.complexify.css');
+            Resource::add('vendor/complexify.js');
+            Resource::add('vendor/complexify.banlist.js');
+            Resource::add('vendor/complexify.css');
         } else {
             $version = Resource::version('Complexify', $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/jquery.complexify.js/'.$version.'/jquery.complexify.min.js');

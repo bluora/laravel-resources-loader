@@ -18,7 +18,7 @@ class Jquery
     public function __construct($version = false)
     {
         if (!env('APP_CDN', true)) {
-            Resource::add('vendor/jquery/jquery.min.js', 'header');
+            Resource::add('vendor/jquery.min.js', 'header');
 
             return;
         }

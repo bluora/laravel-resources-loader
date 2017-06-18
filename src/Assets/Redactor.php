@@ -4,12 +4,12 @@ namespace App\LaravelResourcesLoader\Assets;
 
 use Resource;
 
-class RedactorTextarea
+class Redactor
 {
     public function __construct()
     {
-        Resource::add('vendor/jquery.redactor.js');
-        Resource::add('vendor/jquery.redactor.css');
+        Resource::add('vendor/redactor.js');
+        Resource::add('vendor/redactor.css');
     }
 
     private static $plugins = [
@@ -55,10 +55,10 @@ class RedactorTextarea
     {
         if (in_array($plugin, self::$plugins)) {
             $plugins[] = $plugin;
-            Resource::add('vendor/jquery.redactor/'.$plugin.'.js');
+            Resource::add('vendor/redactor/'.$plugin.'.js');
 
             if ($plugin == 'alignment' || $plugin == 'clips') {
-                Resource::add('vendor/jquery.redactor/'.$plugin.'.css');
+                Resource::add('vendor/redactor/'.$plugin.'.css');
             }
         }
     }

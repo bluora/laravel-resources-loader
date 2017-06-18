@@ -4,7 +4,7 @@ namespace Bluora\LaravelResourcesLoader\Assets;
 
 use Resource;
 
-class DropZoneInput
+class Dropzone
 {
     public function __construct($version = false)
     {
@@ -12,7 +12,7 @@ class DropZoneInput
             Resource::add('vendor/dropzone.js');
             Resource::add('vendor/dropzone.css');
         } else {
-            $version = Resource::version('DropZone', $version);
+            $version = Resource::version('Dropzone', $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/dropzone/'.$version.'/min/dropzone.min.js');
             Resource::add('vendor/dropzone/dropzone.css');
         }
