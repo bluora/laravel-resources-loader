@@ -21,7 +21,7 @@
     },
     "autoload": {
         "files": [
-            "src/helpers.php"
+            "src/helper.php"
         ],
         "psr-4": {
             "Bluora\\LaravelResourcesLoader\\": "src/"
