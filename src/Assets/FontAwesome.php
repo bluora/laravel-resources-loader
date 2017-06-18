@@ -1,11 +1,10 @@
 <?php
 
-namespace Bluora\LaravelResourcesLoader;
+namespace Bluora\LaravelResourcesLoader\Assets;
 
-use Config;
 use Resource as Res;
 
-class Fontawesome
+class FontAwesome
 {
     /**
      * Load FontAwesome.
@@ -24,7 +23,7 @@ class Fontawesome
             return;
         }
 
-        $version = Res::version('Fontawesome', $version);
+        $version = Res::version('FontAwesome', $version);
         Res::add('https://maxcdn.bootstrapcdn.com/font-awesome/'.$version.'/css/font-awesome.min.css');
     }
 }

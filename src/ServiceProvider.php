@@ -21,7 +21,7 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'resource');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.default.php', 'resource');
 
         $this->app->bind('resource', function () {
             return new Resource();

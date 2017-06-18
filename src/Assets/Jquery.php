@@ -1,6 +1,6 @@
 <?php
 
-namespace Bluora\LaravelResourcesLoader;
+namespace Bluora\LaravelResourcesLoader\Assets;
 
 use Config;
 use Resource as Res;
