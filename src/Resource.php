@@ -14,7 +14,7 @@ class Resource
      */
     public function version($name, $version = false)
     {
-        return (empty($version)) ? Config::get('resource.version.'.$name) : $version;
+        return (empty($version)) ? Config::get('resource.'.$name.'.1') : $version;
     }
 
     /**
@@ -174,9 +174,9 @@ class Resource
      *
      * @return void
      */
-    public function container($container_settings)
+    public static function container($container_settings)
     {
-        $this->loadContainer($container_settings);
+        self::loadContainer($container_settings);
     }
 
     /**
@@ -203,36 +203,21 @@ class Resource
      *
      * @return void
      */
-    private static function loadContainer($asset_settings)
+    private static function loadContainer($class_settings)
     {
-        if (is_array($asset_settings)) {
-            $asset_name = array_shift($asset_settings);
+
+        if (is_array($class_settings)) {
+            $asset_name = array_shift($class_settings);
         } else {
-            $asset_name = $asset_settings;
-            $asset_settings = [];
+            $asset_name = $class_settings;
+            $class_settings = [];
         }
 
         $asset_name = ucfirst(strtolower($asset_name));
         $class_name = false;
 
-        $packages = config('resource.packages');
-        $class_settings = [];
-
-        if (isset($packages[$asset_name])) {
-            $class_settings = $packages[$asset_name];
-            if (!is_array($class_settings)) {
-                $class_settings = [$class_settings];
-            }
-            $class_name = array_shift($class_settings);
-            if (count($class_settings) == 0) {
-                $class_settings = $asset_settings;
-            }
-        } else {
-            $file = config('resource.containers').$asset_name.'.php';
-            if (file_exists($file)) {
-                $class_name = config('resource.namespace').$asset_name;
-                $class_settings = $asset_settings;
-            }
+        if ($asset_details = config('resource.'.$asset_name, false)) {
+            $class_name = array_get($asset_details, 0, false);
         }
 
         if ($class_name !== false && class_exists($class_name)) {

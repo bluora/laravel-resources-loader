@@ -2,8 +2,7 @@
 
 namespace Bluora\LaravelResourcesLoader\Assets;
 
-use Config;
-use Resource as Res;
+use Resource;
 
 class JqueryUi
 {
@@ -18,18 +17,18 @@ class JqueryUi
      */
     public function __construct($version = false)
     {
-        Res::container('Jquery');
+        Resource::container('Jquery');
         $theme = (empty($theme)) ? Config::get('resources.version.JqueryUiTheme') : $theme;
 
         if (!env('APP_CDN', true)) {
-            Res::add('vendor/jquery-ui/jquery-ui.min.js');
-            Res::add('vendor/jquery-ui/themes/'.$theme.'/jquery-ui.min.css');
+            Resource::add('vendor/jquery-ui/jquery-ui.min.js');
+            Resource::add('vendor/jquery-ui/themes/'.$theme.'/jquery-ui.min.css');
 
             return;
         }
 
-        $version = Res::version('JqueryUi', $version);
-        Res::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/jquery-ui.min.js');
-        Res::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/themes/'.$theme.'/jquery-ui.min.css');
+        $version = Resource::version('JqueryUi', $version);
+        Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/jquery-ui.min.js');
+        Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/themes/'.$theme.'/jquery-ui.min.css');
     }
 }

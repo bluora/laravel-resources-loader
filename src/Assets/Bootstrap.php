@@ -2,7 +2,7 @@
 
 namespace Bluora\LaravelResourcesLoader\Assets;
 
-use Bluora\LaravelResourcesLoader\Resource;
+use Resource;
 
 class Bootstrap
 {

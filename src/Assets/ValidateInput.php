@@ -2,7 +2,7 @@
 
 namespace Bluora\LaravelResourcesLoader\Assets;
 
-use Bluora\LaravelResourcesLoader\Resource;
+use Resource;
 
 class ValidateInput
 {
@@ -10,8 +10,8 @@ class ValidateInput
     {
         Resource::container('Jquery');
         if (!env('APP_CDN', true)) {
-            Resource::add('vendor/jquery.validate.min.js');
-            Resource::add('vendor/jquery.validate-additional.min.js');
+            Resource::add('vendor/validate.min.js');
+            Resource::add('vendor/validate-additional.min.js');
         } else {
             $version = Resource::version('Validate', $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/'.$version.'/jquery.validate.min.js');
