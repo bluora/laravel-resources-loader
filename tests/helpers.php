@@ -6,12 +6,11 @@ $env = [
 
 $rev = [
     'style.css' => '/build/style.123456.css',
-    'extra.js' => '/build/extra.123456.js'
+    'extra.js'  => '/build/extra.123456.js',
 ];
 
 function config()
 {
-
 }
 
 function elixir($file)
@@ -20,13 +19,14 @@ function elixir($file)
     if (isset($rev[$file])) {
         return $rev[$file];
     }
-    
+
     throw new \InvalidArgumentException();
 }
 
 function env($name, $default = '')
 {
     global $env;
+
     return isset($env[$name]) ? $env[$name] : $default;
 }
 

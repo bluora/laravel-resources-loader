@@ -5,12 +5,12 @@ namespace Bluora\LaravelResourcesLoader\Assets;
 use Config;
 use Resource as Res;
 
-class Jqueryui
+class JqueryUi
 {
     /**
      * Load jQuery UI.
      *
-     * @param boolean $version
+     * @param bool $version
      *
      * @return void
      *

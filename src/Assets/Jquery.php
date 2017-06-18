@@ -2,7 +2,6 @@
 
 namespace Bluora\LaravelResourcesLoader\Assets;
 
-use Config;
 use Resource as Res;
 
 class Jquery
@@ -10,7 +9,7 @@ class Jquery
     /**
      * Load jQuery.
      *
-     * @param boolean $version
+     * @param bool $version
      *
      * @return void
      *

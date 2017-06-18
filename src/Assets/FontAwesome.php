@@ -9,7 +9,7 @@ class FontAwesome
     /**
      * Load FontAwesome.
      *
-     * @param boolean $version
+     * @param bool $version
      *
      * @return void
      *
