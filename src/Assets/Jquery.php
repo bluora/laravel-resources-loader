@@ -2,7 +2,7 @@
 
 namespace Bluora\LaravelResourcesLoader\Assets;
 
-use Resource as Res;
+use Resource;
 
 class Jquery
 {
@@ -18,12 +18,12 @@ class Jquery
     public function __construct($version = false)
     {
         if (!env('APP_CDN', true)) {
-            Res::add('vendor/jquery/jquery.min.js', 'header');
+            Resource::add('vendor/jquery/jquery.min.js', 'header');
 
             return;
         }
 
-        $version = Res::version('Jquery', $version);
-        Res::addFirst('https://ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery.min.js', 'header');
+        $version = Resource::version('Jquery', $version);
+        Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery.min.js', 'header');
     }
 }

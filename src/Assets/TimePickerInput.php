@@ -2,15 +2,15 @@
 
 namespace Bluora\LaravelResourcesLoader\Assets;
 
-use Bluora\LaravelResourcesLoader\Resource;
+use Resource;
 
 class TimePickerInput
 {
     public function __construct($version = false)
     {
         if (!env('APP_CDN', true)) {
-            Resource::add('vendor/jquery.timepicker.css');
-            Resource::add('vendor/jquery.timepicker.js');
+            Resource::add('vendor/timepicker.css');
+            Resource::add('vendor/timepicker.js');
         } else {
             $version = Resource::version('TimePicker', $version);
             Resource::add('https://cdn.jsdelivr.net/jquery.timepicker/'.$version.'/jquery.timepicker.css');
