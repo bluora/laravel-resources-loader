@@ -133,7 +133,6 @@ class ResourceTest extends TestCase
     {
         $res = new Resource();
         $res->container('jquery');
-
     }
 
     /**
@@ -143,7 +142,6 @@ class ResourceTest extends TestCase
      */
     public function testContainers()
     {
-
     }
 
     /**
@@ -153,7 +151,6 @@ class ResourceTest extends TestCase
      */
     public function testController()
     {
-
     }
 
     /**
@@ -163,7 +160,6 @@ class ResourceTest extends TestCase
      */
     public function testCss()
     {
-
     }
 
     /**
@@ -173,7 +169,6 @@ class ResourceTest extends TestCase
      */
     public function testLess()
     {
-
     }
 
     /**
@@ -183,7 +178,6 @@ class ResourceTest extends TestCase
      */
     public function testStyles()
     {
-
     }
 
     /**
@@ -193,7 +187,6 @@ class ResourceTest extends TestCase
      */
     public function testJs()
     {
-
     }
 
     /**
@@ -203,7 +196,6 @@ class ResourceTest extends TestCase
      */
     public function testScripts()
     {
-
     }
 
     /**
