@@ -16,11 +16,19 @@ class IcheckInput
         }
     }
 
-    public static function skin($skin, $colour)
+    /**
+     * Load skin for iCheck.
+     * 
+     * @param  string $skin
+     * @param  string $colour
+     *
+     * @return void
+     */
+    public static function config($skin, $colour)
     {
         if (!empty($skin) && !empty($colour)) {
             if (!env('APP_CDN', true)) {
-                Resource::add('vendor/icheck/skins/'.$skin.'/'.$colour.'.css');
+                Resource::add('vendor/icheck/'.$skin.'/'.$colour.'.css');
             } else {
                 $version = Resource::version('Icheck');
                 Resource::add('https://cdnjs.cloudflare.com/ajax/libs/iCheck/'.$version.'/skins/'.$skin.'/'.$colour.'.css');

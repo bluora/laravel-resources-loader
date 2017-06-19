@@ -8,7 +8,7 @@ class MultiEmailInput
 {
     public function __construct($version = false)
     {
-        Resource::container('BootstrapTagsInput');
+        Resource::container('TagsInput');
         Resource::add('vendor/multi-email.js');
         Resource::add('vendor/multi-email.css');
     }

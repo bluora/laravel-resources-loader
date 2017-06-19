@@ -8,7 +8,7 @@ class TimeInput
 {
     public function __construct()
     {
-        Resource::add('vendor/wickedpicker.css');
-        Resource::add('vendor/wickedpicker.js');
+        Resource::add('vendor/timepicker.css');
+        Resource::add('vendor/timepicker.js');
     }
 }
