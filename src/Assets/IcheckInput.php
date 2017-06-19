@@ -11,7 +11,7 @@ class IcheckInput
         if (!env('APP_CDN', true)) {
             Resource::add('vendor/icheck.min.js');
         } else {
-            $version = Resource::version('Icheck', $version);
+            $version = Resource::version('IcheckInput', $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/iCheck/'.$version.'/icheck.min.js');
         }
     }
