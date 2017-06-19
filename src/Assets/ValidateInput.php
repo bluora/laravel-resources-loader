@@ -13,7 +13,7 @@ class ValidateInput
             Resource::add('vendor/validate.min.js');
             Resource::add('vendor/validate-additional.min.js');
         } else {
-            $version = Resource::version('Validate', $version);
+            $version = Resource::version('ValidateInput', $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/'.$version.'/jquery.validate.min.js');
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/'.$version.'/additional-methods.min.js');
         }

@@ -30,7 +30,7 @@ class IcheckInput
             if (!env('APP_CDN', true)) {
                 Resource::add('vendor/icheck/'.$skin.'/'.$colour.'.css');
             } else {
-                $version = Resource::version('Icheck');
+                $version = Resource::version('IcheckInput');
                 Resource::add('https://cdnjs.cloudflare.com/ajax/libs/iCheck/'.$version.'/skins/'.$skin.'/'.$colour.'.css');
             }
         }

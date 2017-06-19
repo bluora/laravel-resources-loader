@@ -12,7 +12,7 @@ class DateInput
             Resource::add('vendor/datepicker.min.js');
             Resource::add('vendor/datepicker.css');
         } else {
-            $version = Resource::version('Date', $version);
+            $version = Resource::version('DateInput', $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/'.$version.'/js/bootstrap-datepicker.min.js');
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/'.$version.'/css/bootstrap-datepicker.css');
         }

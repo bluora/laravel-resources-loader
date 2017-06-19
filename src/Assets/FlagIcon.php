@@ -8,7 +8,7 @@ class FlagIcon
 {
     public static function svg($country_code, $version = false)
     {
-        $version = Resource::version('Flagicon', $version);
+        $version = Resource::version('FlagIcon', $version);
 
         return 'https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/'.$version.'/flags/1x1/'.strtolower($country_code).'.svg';
     }

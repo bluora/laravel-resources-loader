@@ -12,7 +12,7 @@ class TimePickerInput
             Resource::add('vendor/timepicker.css');
             Resource::add('vendor/timepicker.js');
         } else {
-            $version = Resource::version('TimePicker', $version);
+            $version = Resource::version('TimePickerInput', $version);
             Resource::add('https://cdn.jsdelivr.net/jquery.timepicker/'.$version.'/jquery.timepicker.css');
             Resource::add('https://cdn.jsdelivr.net/jquery.timepicker/'.$version.'/jquery.timepicker.min.js');
         }

@@ -12,7 +12,7 @@ class TextDiff
             Resource::add('vendor/text-diff-patch.min.js');
             Resource::add('vendor/text-diff.min.js');
         } else {
-            $version = Resource::version('DiffMatchPatch', $version);
+            $version = Resource::version('TextDiff', $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/diff_match_patch/'.$version.'/diff_match_patch.js');
             Resource::add('vendor/pretty-text-diff/jquery.pretty-text-diff.min.js');
         }
