@@ -246,9 +246,11 @@ class Resource
         foreach ($file_extensions as $extension) {
             $file_name = str_replace('.', '/', $file).'.'.$extension;
 
-            if (env('APP_ENV') == 'local') {
-                $file_path = dirname(resource_path().'/views/'.$file_name);
-                $file_path .= '/'.$extension.'/'.basename($file_name);
+            $local_file_path = dirname(resource_path().'/views/'.$file_name);
+            $local_file_path .= '/'.$extension.'/'.basename($file_name);
+
+            if (env('APP_ENV') == 'local' && file_exists($local_file_path)) {
+                $file_path = $local_file_path;
             } else {
                 $file_path = public_path().'/assets/'.$file_name;
             }
