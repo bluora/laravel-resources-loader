@@ -1,6 +1,7 @@
-window.extensions_initializer['auto-init-multi-email'] = function() {
-    if (!$(this).hasClass('multiemail-applied')) {
+window.extensions_initializer['init-multi-email-input'] = function() {
+    if (!$(this).hasClass('multi-email-input-applied')) {
         $(this).multiEmail();
-        $(this).addClass('multiemail-applied');
+        $(this).addClass('multi-email-input-applied');
+        $(this).addClass('bootstrap-multiemail');
     }
 }

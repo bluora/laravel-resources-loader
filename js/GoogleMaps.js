@@ -3,7 +3,7 @@ var googlemap_geocoder;
 var googlemap_maps = {};
 var googlemap_markers = {};
 
-window.extensions_initializer['auto-init-google-maps'] = function() {
+window.extensions_initializer['init-google-maps'] = function() {
     if (typeof googlemap_geocoder == 'undefined') {
         googlemap_geocoder = new google.maps.Geocoder();
     }

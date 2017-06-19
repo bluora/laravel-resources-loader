@@ -1,4 +1,4 @@
-window.extensions_initializer['auto-init-slimscroll'] = function() {
+window.extensions_initializer['init-slimscroll'] = function() {
     options = {
         touchScrollStep: 50,
         alwaysVisible: true

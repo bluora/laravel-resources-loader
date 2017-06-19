@@ -1,5 +1,5 @@
 
-window.extensions_initializer['auto-init-time-input'] = function() {
+window.extensions_initializer['init-time-input'] = function() {
     var current_element = $(this);
     element_id = current_element.attr('id');
     if (this.nodeName.toLowerCase() == 'input') {

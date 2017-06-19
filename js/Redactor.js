@@ -1,4 +1,4 @@
-window.extensions_initializer['auto-init-redactor'] = function() {
+window.extensions_initializer['init-redactor'] = function() {
     if (!$(this).hasClass('redactor-applied')) {
         options = {};
         if ($(this).data('toolbar-buttons')) {

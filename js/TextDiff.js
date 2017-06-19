@@ -1,4 +1,4 @@
-window.extensions_initializer['auto-init-text-diff'] = function() {
+window.extensions_initializer['init-text-diff'] = function() {
     options = {
         originalContent: $(this).find('.pretty-text-original').html(),
         changedContent: $(this).find('.pretty-text-changed').html(),

@@ -1,9 +1,10 @@
 
-window.extensions_initializer['auto-init-icheck-input'] = function() {
-    if (!($(this).parent().hasClass('icheckbox_flat-green')
+window.extensions_initializer['init-icheck-input'] = function() {
+    if (!($(this).parent().hasClass('config-icheck-input_flat-green')
         || $(this).parent().hasClass('iradio_flat-green'))) {
+        $(this).addClass('icheck');
         $(this).iCheck({
-            checkboxClass: 'icheckbox_flat-green',
+            checkboxClass: 'config-icheck-input_flat-green',
             radioClass: 'iradio_flat-green'
         });
     }

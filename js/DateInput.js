@@ -1,5 +1,5 @@
 
-window.extensions_initializer['auto-init-date-input'] = function() {
+window.extensions_initializer['init-date-input'] = function() {
     options = {};
     options['zIndexOffset'] = 1001;
     options['format'] = 'dd/mm/yyyy';

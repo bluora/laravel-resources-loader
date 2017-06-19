@@ -1,4 +1,4 @@
-window.extensions_initializer['auto-init-select2'] = function() {
+window.extensions_initializer['init-select2'] = function() {
     options = {};
     if ($(this).data('select2-placeholder')) {
         options.placeholder = $(this).data('select2-placeholder');
