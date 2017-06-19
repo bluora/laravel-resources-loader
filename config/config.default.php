@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'AutoInit'                => [Bluora\LaravelResourcesLoader\Assets\AutoInit::class],
     'Bootstrap'               => [Bluora\LaravelResourcesLoader\Assets\Bootstrap::class, '3.3.6'],
     'PasswordComplexifyInput' => [Bluora\LaravelResourcesLoader\Assets\PasswordComplexifyInput::class, '0.5.1'],
     'DateInput'               => [Bluora\LaravelResourcesLoader\Assets\DateInput::class],
@@ -17,6 +18,7 @@ return [
     'JqueryUiTheme'           => [false, 'smoothness'],
     'Ladda'                   => [Bluora\LaravelResourcesLoader\Assets\Ladda::class, '1.0.0'],
     'MetisMenu'               => [Bluora\LaravelResourcesLoader\Assets\MetisMenu::class, '2.5.2'],
+    'MultiEmailInput'         => [Bluora\LaravelResourcesLoader\Assets\MultiEmailInput::class, '0.0.2'],
     'Pace'                    => [Bluora\LaravelResourcesLoader\Assets\Pace::class, '1.0.2'],
     'Redactor'                => [Bluora\LaravelResourcesLoader\Assets\Redactor::class],
     'Slimscroll'              => [Bluora\LaravelResourcesLoader\Assets\Slimscroll::class, '1.3.7'],
