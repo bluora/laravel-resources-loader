@@ -18,9 +18,9 @@ class IcheckInput
 
     /**
      * Load skin for iCheck.
-     * 
-     * @param  string $skin
-     * @param  string $colour
+     *
+     * @param string $skin
+     * @param string $colour
      *
      * @return void
      */
