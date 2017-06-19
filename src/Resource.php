@@ -176,9 +176,9 @@ class Resource
      *
      * @return void
      */
-    public static function container($container_settings)
+    public static function container($container_settings, $config = [])
     {
-        self::loadContainer($container_settings);
+        self::loadContainer($container_settings, $config);
     }
 
     /**
@@ -205,7 +205,7 @@ class Resource
      *
      * @return void
      */
-    private static function loadContainer($class_settings)
+    private static function loadContainer($class_settings, $config = [])
     {
         if (is_array($class_settings)) {
             $asset_name = array_shift($class_settings);
@@ -220,8 +220,12 @@ class Resource
             $class_name = array_get($asset_details, 0, false);
         }
 
-        if ($class_name !== false && !isset(self::$containers[$class_name])) {
+        if ($class_name !== false && !isset(self::$containers[$class_name]) && class_exists($class_name)) {
             self::$containers[$class_name] = new $class_name(...$class_settings);
+        }
+
+        if (!empty($config)) {
+            self::$containers[$class_name]->config(...$config);
         }
     }
 
