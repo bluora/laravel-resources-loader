@@ -23,7 +23,7 @@ class Jquery
             return;
         }
 
-        $version = Resource::version('Jquery', $version);
+        $version = Resource::version(class_basename(__CLASS__), $version);
         Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery.min.js', 'header');
     }
 }

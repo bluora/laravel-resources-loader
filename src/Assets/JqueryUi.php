@@ -27,7 +27,7 @@ class JqueryUi
             return;
         }
 
-        $version = Resource::version('JqueryUi', $version);
+        $version = Resource::version(class_basename(__CLASS__), $version);
         Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/jquery-ui.min.js');
         Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/themes/'.$theme.'/jquery-ui.min.css');
     }

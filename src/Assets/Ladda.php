@@ -14,7 +14,7 @@ class Ladda
             Resource::add('vendor/ladda.jquery.min.js');
             Resource::add('vendor/ladda-themeless.min.css');
         } else {
-            $version = Resource::version('Ladda', $version);
+            $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/Ladda/'.$version.'/spin.min.js');
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/Ladda/'.$version.'/ladda.min.js');
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/Ladda/'.$version.'/ladda.jquery.min.js');

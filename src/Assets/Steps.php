@@ -15,7 +15,7 @@ class Steps
             Resource::add('vendor/jquery.steps.min.js');
             Resource::add('vendor/jquery.steps.css');
         } else {
-            $version = Resource::version('Steps', $version);
+            $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/'.$version.'/jquery.steps.min.js');
             Resource::add('vendor/jquery.steps/jquery.steps.css');
         }

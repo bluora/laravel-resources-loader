@@ -23,7 +23,7 @@ class FontAwesome
             return;
         }
 
-        $version = Resource::version('FontAwesome', $version);
+        $version = Resource::version(class_basename(__CLASS__), $version);
         Resource::add('https://maxcdn.bootstrapcdn.com/font-awesome/'.$version.'/css/font-awesome.min.css');
     }
 }

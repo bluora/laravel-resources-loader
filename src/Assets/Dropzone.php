@@ -12,7 +12,7 @@ class Dropzone
             Resource::add('vendor/dropzone.js');
             Resource::add('vendor/dropzone.css');
         } else {
-            $version = Resource::version('Dropzone', $version);
+            $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/dropzone/'.$version.'/min/dropzone.min.js');
             Resource::add('vendor/dropzone/dropzone.css');
         }

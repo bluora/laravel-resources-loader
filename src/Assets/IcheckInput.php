@@ -11,7 +11,7 @@ class IcheckInput
         if (!env('APP_CDN', true)) {
             Resource::add('vendor/icheck.min.js');
         } else {
-            $version = Resource::version('IcheckInput', $version);
+            $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/iCheck/'.$version.'/icheck.min.js');
         }
     }
@@ -30,7 +30,7 @@ class IcheckInput
             if (!env('APP_CDN', true)) {
                 Resource::add('vendor/icheck/'.$skin.'/'.$colour.'.css');
             } else {
-                $version = Resource::version('IcheckInput');
+                $version = Resource::version(class_basename(__CLASS__));
                 Resource::add('https://cdnjs.cloudflare.com/ajax/libs/iCheck/'.$version.'/skins/'.$skin.'/'.$colour.'.css');
             }
         }

@@ -11,7 +11,7 @@ class Pace
         if (!env('APP_CDN', true)) {
             Resource::add('vendor/pace.min.js');
         } else {
-            $version = Resource::version('Pace', $version);
+            $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/pace/'.$version.'/pace.min.js');
         }
     }

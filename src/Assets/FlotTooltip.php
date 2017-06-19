@@ -11,7 +11,7 @@ class FlotTooltip
         if (!env('APP_CDN', true)) {
             Resource::add('vendor/jquery.flot.tooltip.min.js');
         } else {
-            $version = Resource::version('FlotTooltip', $version);
+            $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/flot.tooltip/'.$version.'/jquery.flot.tooltip.min.js');
         }
     }

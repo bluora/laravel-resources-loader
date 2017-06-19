@@ -12,7 +12,7 @@ class Select2
             Resource::add('vendor/select2.min.css');
             Resource::add('vendor/select2.min.js');
         } else {
-            $version = Resource::version('Select2', $version);
+            $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/select2/'.$version.'/css/select2.min.css');
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/select2/'.$version.'/js/select2.min.js');
         }
