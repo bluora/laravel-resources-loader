@@ -1,12 +1,12 @@
 {
-    "name": "bluora/laravel-resources-loader",
+    "name": "hnhdigital-os/laravel-resources-loader",
     "description": "Provides a simplified approach to loading assets",
     "keywords": ["laravel","illuminate","assets"],
     "license": "MIT",
     "authors": [
         {
             "name": "Rocco Howard",
-            "email": "rocco@bluora.com.au"
+            "email": "rocco@hnh.digital"
         }
     ],
     "require": {
