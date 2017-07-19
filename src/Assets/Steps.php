@@ -12,8 +12,8 @@ class Steps
         Resource::container('Validate');
 
         if (!env('APP_CDN', true)) {
-            Resource::add('vendor/jquery.steps.min.js');
-            Resource::add('vendor/jquery.steps.css');
+            Resource::add('vendor/steps.min.js');
+            Resource::add('vendor/steps.css');
         } else {
             $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/'.$version.'/jquery.steps.min.js');
