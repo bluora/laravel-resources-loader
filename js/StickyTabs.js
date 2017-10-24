@@ -1,4 +1,4 @@
-window.extensions_document_load['sticky-tabs'] = function() {
+window.extensions_initializer['init-sticky-tabs'] = function() {
     $('.nav-tabs').stickyTabs({
         showTabUsingClickTrigger: true,
         showParentTabs: true
