@@ -14,7 +14,7 @@ class Dropzone
         } else {
             $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://cdnjs.cloudflare.com/ajax/libs/dropzone/'.$version.'/min/dropzone.min.js');
-            Resource::add('vendor/dropzone/dropzone.css');
+            Resource::add('vendor/dropzone.css');
         }
 
         Resource::addScript('if (typeof Dropzone != \'undefined\') { Dropzone.autoDiscover = false; }');
