@@ -18,17 +18,17 @@ class JqueryUi
     public function __construct($version = false)
     {
         Resource::container('Jquery');
-        $theme = (empty($theme)) ? Config::get('resources.version.JqueryUiTheme') : $theme;
+        $theme = empty($theme) ? config('resource.JqueryUiTheme.1') : $theme;
 
         if (!env('APP_CDN', true)) {
-            Resource::add('vendor/jquery-ui.min.js');
-            Resource::add('vendor/themes/'.$theme.'/jquery-ui.min.css');
+            Resource::add('vendor/jquery-ui.min.js', 'header');
+            Resource::add('vendor/jquery-ui/themes/'.$theme.'/jquery-ui.min.css');
 
             return;
         }
 
         $version = Resource::version(class_basename(__CLASS__), $version);
-        Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/jquery-ui.min.js');
+        Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/jquery-ui.min.js', 'header');
         Resource::addFirst('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$version.'/themes/'.$theme.'/jquery-ui.min.css');
     }
 }
