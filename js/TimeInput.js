@@ -12,4 +12,4 @@ $('.init-dropzone').on('extension::time-input::init',  function(event) {
 
         element.trigger('extension::dropzone::applied');
     }
-}
+});

@@ -1,5 +1,4 @@
 
-
 $('.init-multi-email-input').on('extension::multi-email-input::init',  function(event) {
     element = $(event.currentTarget);
 
@@ -10,4 +9,4 @@ $('.init-multi-email-input').on('extension::multi-email-input::init',  function(
 
         element.trigger('extension::multi-email-input::applied');
     }
-}
+});

@@ -4,4 +4,4 @@ $(function() {
         showTabUsingClickTrigger: true,
         showParentTabs: true
     });
-}
+});

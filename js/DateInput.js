@@ -10,4 +10,4 @@ $('.init-date-input').on('extension::date-input::init',  function(event) {
     element.datepicker(options);
 
     element.trigger('extension::date-input::applied');
-}
+});

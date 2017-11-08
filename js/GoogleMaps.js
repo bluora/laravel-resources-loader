@@ -41,4 +41,4 @@ $('.init-google-maps').on('extension::google-maps::init',  function(event) {
     });
 
     element.trigger('extension::googlemap::applied');
-}
+});

@@ -1,5 +1,4 @@
 
-
 $('.init-slimscroll').on('extension::slimscroll::init',  function(event) {
     element = $(event.currentTarget);
 
@@ -13,4 +12,4 @@ $('.init-slimscroll').on('extension::slimscroll::init',  function(event) {
     element.slimScroll(options);
 
     element.trigger('extension::slimscroll::applied');
-}
+});

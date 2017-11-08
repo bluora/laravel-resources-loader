@@ -1,8 +1,7 @@
 
-
 $('.init-select2').on('extension::select2::init',  function(event) {
     element = $(event.currentTarget);
-    
+
     options = {};
     if (element.data('select2-placeholder')) {
         options.placeholder = element.data('select2-placeholder');
@@ -26,4 +25,4 @@ $('.init-select2').on('extension::select2::init',  function(event) {
     element.select2(options);
 
     element.trigger('extension::select2::applied');
-}
+});

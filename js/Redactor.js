@@ -1,5 +1,4 @@
 
-
 $('.init-redactor').on('extension::redactor::init',  function(event) {
     element = $(event.currentTarget);
 
@@ -15,4 +14,4 @@ $('.init-redactor').on('extension::redactor::init',  function(event) {
         element.addClass('redactor-applied');
         element.trigger('extension::dropzone::applied');
     }
-}
+});

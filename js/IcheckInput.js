@@ -15,4 +15,4 @@ $('.init-icheck-input').on('extension::icheck-input::init',  function(event) {
             element.trigger('extension::icheck-input::applied');
         }
     }
-}
+});
