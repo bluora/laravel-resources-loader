@@ -1,10 +1,16 @@
-window.extensions_initializer['init-slimscroll'] = function() {
+
+
+$('.init-slimscroll').on('extension::slimscroll::init',  function(event) {
+    element = $(event.currentTarget);
+
     options = {
         touchScrollStep: 50,
         alwaysVisible: true
     };
-    if ($(this).data('slimscroll-height')) {
-        options.height = $(this).data('slimscroll-height');
+    if (element.data('slimscroll-height')) {
+        options.height = element.data('slimscroll-height');
     }
-    $(this).slimScroll(options);
+    element.slimScroll(options);
+
+    element.trigger('extension::slimscroll::applied');
 }

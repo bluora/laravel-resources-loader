@@ -1,13 +1,19 @@
 
-window.extensions_initializer['init-dropzone'] = function() {
-    if ($(this).find('.dz-message').length == 0) {
-        options = $(this).data('dropzone-options');
+$('.init-dropzone').on('extension::dropzone::init',  function(event) {
+    element = $(event.currentTarget);
+
+    if (element.find('.dz-message').length == 0) {
+        options = element.data('dropzone-options');
         if (options === '') {
             options = {};
         }
-        if (typeof $(this).data('dropzone-init') == 'function') {
-            options['init'] = $(this).data('dropzone-init');
-        }
-        $(this).dropzone(options);
+        options['init'] = function() {
+            if (typeof element.data('dropzone-init') == 'function') {
+                element.data('dropzone-init')();
+            }
+        }        
+        element.dropzone(options);
+
+        element.trigger('extension::dropzone::applied');
     }
-}  
+});

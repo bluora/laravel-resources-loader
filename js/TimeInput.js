@@ -1,13 +1,15 @@
 
-window.extensions_initializer['init-time-input'] = function() {
-    var current_element = $(this);
-    element_id = current_element.attr('id');
+$('.init-dropzone').on('extension::time-input::init',  function(event) {
+    element = $(event.currentTarget);
+
     if (this.nodeName.toLowerCase() == 'input') {
-        if (current_element.hasClass('ui-timepicker-input')) {
-            $(current_element).timepicker('remove');
+        if (element.hasClass('ui-timepicker-input')) {
+            element.timepicker('remove');
         } else {
-            current_element.data('original', $("<div />").append(current_element.clone()).html());
+            element.data('original', $("<div />").append(element.clone()).html());
         }
-        $(current_element).timepicker({});
+        element.timepicker({});
+
+        element.trigger('extension::dropzone::applied');
     }
 }

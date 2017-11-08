@@ -1,9 +1,13 @@
 
-window.extensions_initializer['init-date-input'] = function() {
+$('.init-date-input').on('extension::date-input::init',  function(event) {
+    element = $(event.currentTarget);
+
     options = {};
     options['zIndexOffset'] = 1001;
     options['format'] = 'dd/mm/yyyy';
     options['todayHighlight'] = true;
     options['todayBtn'] = true;
-    $(this).datepicker(options);
+    element.datepicker(options);
+
+    element.trigger('extension::date-input::applied');
 }
