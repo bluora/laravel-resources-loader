@@ -2,6 +2,7 @@
 
 namespace Bluora\LaravelResourcesLoader\Assets;
 
+use Html;
 use Resource;
 
 class Dropzone
@@ -25,6 +26,7 @@ class Dropzone
         $default = [
             'dictDefaultMessage'     => '',
             'dictDefaultMessageHint' => '<u>Drop</u> files here or <u>click</u> to browse.',
+            'maxFilesize'            => Html::getFileUploadMaxSize(),
         ];
         $options = array_merge($default, $options);
         if (!empty($options['dictDefaultMessageHint'])) {
