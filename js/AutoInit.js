@@ -4,7 +4,7 @@ $(function() {
     $('[class*="init-"]').each(function(key, element) {
         result = $.grep($(element).attr('class').split(' '), function(s) { return s.match(new RegExp('init-')) });
         result.forEach(function(class_name) {
-            $(element).trigger(class_name.replace('init-', 'init::'));
+            $(element).trigger('extension::'+class_name.replace('init-', '')+'::init');
         });
     });
 
@@ -26,7 +26,7 @@ function findAndInit(event, restrict_search) {
             }
 
             result.each(function(key, element) {
-                $(element).trigger(class_name.replace('init-', 'init::'));
+                $(element).trigger('extension::'+class_name.replace('init-', '')+'::init');
             });
         });
     });
