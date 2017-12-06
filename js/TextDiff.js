@@ -21,4 +21,4 @@ $('.init-text-diff').on('extension::text-diff::init',  function(event) {
     }
 
     element.trigger('extension::text-diff::applied');
-}});
+});
