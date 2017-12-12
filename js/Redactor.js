@@ -1,13 +1,17 @@
-window.extensions_initializer['init-redactor'] = function() {
-    if (!$(this).hasClass('redactor-applied')) {
+
+$('.init-redactor').on('extension::redactor::init',  function(event) {
+    element = $(event.currentTarget);
+
+    if (!element.hasClass('redactor-applied')) {
         options = {};
-        if ($(this).data('toolbar-buttons')) {
-            options['buttons'] = $(this).data('toolbar-buttons');
+        if (element.data('toolbar-buttons')) {
+            options['buttons'] = element.data('toolbar-buttons');
         }
-        if ($(this).data('toolbar-plugins')) {
-            options['plugins'] = $(this).data('toolbar-plugins');
+        if (element.data('toolbar-plugins')) {
+            options['plugins'] = element.data('toolbar-plugins');
         }
-        $(this).redactor(options);
-        $(this).addClass('redactor-applied');
+        element.redactor(options);
+        element.addClass('redactor-applied');
+        element.trigger('extension::dropzone::applied');
     }
-}
+});

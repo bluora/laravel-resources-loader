@@ -239,37 +239,83 @@ class Resource
      */
     public function controller($file_extensions, $file)
     {
+        // Only look in a single file extension folder.
         if (!is_array($file_extensions)) {
             $file_extensions = [$file_extensions];
         }
+
+        // Load the manifest.
         $manifest = config('rev-manifest', []);
+
+        // Replace dots with slashes.
+        $file = str_replace('.', '/', $file);
+
+        if (substr($file, -1) === '*') {
+
+            $folder = dirname(substr($file, 0, -1));
+            $base_folder = basename(substr($file, 0, -1));
+
+            foreach ($file_extensions as $extension) {
+                $extension_folder = $folder.'/'.$extension.'/'.$base_folder;
+                $folder_contents = scandir(resource_path().'/views/'.$extension_folder);
+                
+                foreach ($folder_contents as $folder_file) {
+                    if ($folder_file == '.' || $folder_file == '..') {
+                        continue;
+                    }
+
+                    $full_path = resource_path().'/views/'.$extension_folder.'/'.$folder_file;
+                    $file_name = $extension_folder.'/'.$folder_file;
+
+                    $this->loadFile($full_path, $file_name, $extension);
+                }
+            }
+
+            return;
+        }
+
+        // Go through each file extension folder.
         foreach ($file_extensions as $extension) {
-            $file_name = str_replace('.', '/', $file).'.'.$extension;
+            $file_name = $file.'.'.$extension;
 
             $local_file_path = dirname(resource_path().'/views/'.$file_name);
             $local_file_path .= '/'.$extension.'/'.basename($file_name);
 
             if (env('APP_ENV') == 'local' && file_exists($local_file_path)) {
-                $file_path = $local_file_path;
+                $full_path = $local_file_path;
             } else {
-                $file_path = public_path().'/assets/'.$file_name;
+                $full_path = public_path().'/assets/'.$file_name;
             }
 
-            if (isset($manifest[$file_name]) || file_exists($file_path)) {
-                if (env('APP_ENV') == 'local') {
-                    if (!isset($this->loaded_inline[$file_path])) {
-                        $contents = file_get_contents($file_path);
-                        $contents = '/* '.$file_name." */ \n\n".$contents;
-                        if ($extension == 'js') {
-                            $this->addScript($contents, 'inline');
-                        } else {
-                            $this->addStyle($contents);
-                        }
-                        $this->loaded_inline[$file_path] = true;
+            $this->loadFile($full_path, $file_name, $extension);
+        }
+    }
+
+    /**
+     * Load a file.
+     *
+     * @param  string $full_path
+     * @param  string $file_name
+     * @param  string $extension
+     *
+     * @return void
+     */
+    public function loadFile($full_path, $file_name, $extension)
+    {
+        if (isset($manifest[$file_name]) || file_exists($full_path)) {
+            if (env('APP_ENV') == 'local') {
+                if (!isset($this->loaded_inline[$full_path])) {
+                    $contents = file_get_contents($full_path);
+                    $contents = '/* '.$file_name." */ \n\n".$contents;
+                    if ($extension == 'js') {
+                        $this->addScript($contents, 'inline');
+                    } else {
+                        $this->addStyle($contents);
                     }
-                } else {
-                    $this->add($file_name, 'ready');
+                    $this->loaded_inline[$full_path] = true;
                 }
+            } else {
+                $this->add($file_name, 'ready');
             }
         }
     }

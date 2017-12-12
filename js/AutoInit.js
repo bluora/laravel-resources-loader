@@ -1,36 +1,35 @@
 
-window.extensions_document_load = {};
-window.extensions_initializer = {};
-window.extensions_applied = [];
-
-// Auto init any scripts
-$(document).ready(function () {
-    Object.keys(window.extensions_document_load).forEach(function(extension_name) {
-        if ($('script[src*="' + extension_name + '"]').length > 0 || $('.' + extension_name).length) {
-            window.extensions_document_load[extension_name]();
-        }
+// Auto trigger intialization.
+$(function() {
+    $('[class*="init-"]').each(function(key, element) {
+        result = $.grep($(element).attr('class').split(' '), function(s) { return s.match(new RegExp('init-')) });
+        result.forEach(function(class_name) {
+            $(element).trigger('extension::'+class_name.replace('init-', '')+'::init');
+        });
     });
 
-    Object.keys(window.extensions_initializer).forEach(function(extension_name) {
-        if ($('script[src*=' + extension_name + ']').length > 0 || $('.' + extension_name).length) {
-            window.extensions_applied.push(extension_name);
-            $('.'+extension_name).each(window.extensions_initializer[extension_name]);            
-        }
-    });
-
-    $('body').on('extensions::init', findAndApplyScriptExtensions);
-    $('ul.nav-tabs a').on('shown.bs.tab', findAndApplyScriptExtensions);
-
+    $('body').on('extensions::init', findAndInit);
+    $('ul.nav-tabs a').on('shown.bs.tab', findAndInit);
 });
 
-function findAndApplyScriptExtensions(event, restrict_search) {
-    window.extensions_applied.forEach(function(extension_name) {
-        if (typeof restrict_search == 'object') {
-            $(restrict_search).find('.' + extension_name).each(window.extensions_initializer[extension_name]);
-        } else if (typeof restrict_search == 'string') {
-            $(restrict_search + ' .' + extension_name).each(window.extensions_initializer[extension_name]);
-        } else {
-            $(' .' + extension_name).each(window.extensions_initializer[extension_name]);
-        }
+function findAndInit(event, restrict_search) {
+    $('[class*="init-"]').each(function(key, element) {
+        result = $.grep($(element).attr('class').split(' '), function(s) { return s.match(new RegExp('init-')) });
+        result.forEach(function(class_name) {
+
+            if (typeof restrict_search == 'object') {
+                result = $(restrict_search).find('.' + class_name);
+            } else if (typeof restrict_search == 'string') {
+                result = $(restrict_search + ' .' + class_name)
+            } else {
+                result = $(' .' + class_name);
+            }
+
+            result.each(function(key, element) {
+                $(element).trigger('extension::'+class_name.replace('init-', '')+'::init');
+            });
+        });
     });
 }
+
+var findAndApplyScriptExtensions = findAndInit;

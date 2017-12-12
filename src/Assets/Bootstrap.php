@@ -10,12 +10,12 @@ class Bootstrap
     {
         Resource::container('Jquery');
         if (!env('APP_CDN', true)) {
-            Resource::add('vendor/bootstrap.min.js');
+            Resource::add('vendor/bootstrap.js');
         } else {
             $version = Resource::version(class_basename(__CLASS__), $version);
             Resource::add('https://maxcdn.bootstrapcdn.com/bootstrap/'.$version.'/js/bootstrap.min.js');
         }
         Resource::container('StickyTabs');
-        Resource::add('vendor/bootstrap/styles.css');
+        Resource::add('vendor/bootstrap.css');
     }
 }

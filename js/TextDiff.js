@@ -1,19 +1,24 @@
-window.extensions_initializer['init-text-diff'] = function() {
+
+$('.init-text-diff').on('extension::text-diff::init',  function(event) {
+    element = $(event.currentTarget);
+
     options = {
-        originalContent: $(this).find('.pretty-text-original').html(),
-        changedContent: $(this).find('.pretty-text-changed').html(),
-        diffContainer: $(this).find('.pretty-text-container')
+        originalContent: element.find('.pretty-text-original').html(),
+        changedContent: element.find('.pretty-text-changed').html(),
+        diffContainer: element.find('.pretty-text-container')
     };
-    $(this).prettyTextDiff(options);
-    if ($(this).find('.pretty-text-original').html() == '') {
-        $(this).find('.pretty-text-original').html('<del>{empty value}</del>');
-    } else if ($(this).find('.pretty-text-changed').html() == '') {
-        $(this).find('.pretty-text-original').show();
-        $(this).find('.pretty-text-original').html('<del>' + $(this).find('.pretty-text-original').html() + '</del><ins>{empty value}</ins>');
-        $(this).find('.pretty-text-changed').html('{empty value}');
-        $(this).find('.pretty-text-container').hide();
+    element.prettyTextDiff(options);
+    if (element.find('.pretty-text-original').html() == '') {
+        element.find('.pretty-text-original').html('<del>{empty value}</del>');
+    } else if (element.find('.pretty-text-changed').html() == '') {
+        element.find('.pretty-text-original').show();
+        element.find('.pretty-text-original').html('<del>' + element.find('.pretty-text-original').html() + '</del><ins>{empty value}</ins>');
+        element.find('.pretty-text-changed').html('{empty value}');
+        element.find('.pretty-text-container').hide();
     } else {
-        $(this).find('.pretty-text-original').hide();
-        $(this).find('.pretty-text-container').show();
+        element.find('.pretty-text-original').hide();
+        element.find('.pretty-text-container').show();
     }
-}
+
+    element.trigger('extension::text-diff::applied');
+});
