@@ -303,7 +303,7 @@ class Resource
     public function loadFile($full_path, $file_name, $extension)
     {
         if (isset($manifest[$file_name]) || file_exists($full_path)) {
-            if (env('APP_ENV') == 'local') {
+            if (env('APP_ASSET_INLINE', false)) {
                 if (!isset($this->loaded_inline[$full_path])) {
                     $contents = file_get_contents($full_path);
                     $contents = '/* '.$file_name." */ \n\n".$contents;
