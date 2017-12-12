@@ -267,7 +267,7 @@ class Resource
                     $full_path = resource_path().'/views/'.$extension_folder.'/'.$folder_file;
                     $file_name = $extension_folder.'/'.$folder_file;
 
-                    $this->loadFile($full_path, $file_name, $extension);
+                    $this->loadFile($file_name, $extension, $full_path);
                 }
             }
 
@@ -281,28 +281,32 @@ class Resource
             $local_file_path = dirname(resource_path().'/views/'.$file_name);
             $local_file_path .= '/'.$extension.'/'.basename($file_name);
 
-            if (env('APP_ENV') == 'local' && file_exists($local_file_path)) {
-                $full_path = $local_file_path;
-            } else {
-                $full_path = public_path().'/assets/'.$file_name;
+            $full_path = '';
+
+            if (env('APP_ENV') == 'local') {
+                if (file_exists($local_file_path)) {
+                    $full_path = $local_file_path;
+                } else {
+                    $full_path = public_path().'/assets/'.$file_name;
+                }
             }
 
-            $this->loadFile($full_path, $file_name, $extension);
+            $this->loadFile($file_name, $extension, $full_path);
         }
     }
 
     /**
      * Load a file.
      *
-     * @param  string $full_path
      * @param  string $file_name
      * @param  string $extension
+     * @param  string $full_path
      *
      * @return void
      */
-    public function loadFile($full_path, $file_name, $extension)
+    public function loadFile($file_name, $extension, $full_path = '')
     {
-        if (isset($manifest[$file_name]) || file_exists($full_path)) {
+        if (isset($manifest[$file_name]) || (!empty($full_path) && file_exists($full_path))) {
             if (env('APP_ASSET_INLINE', false)) {
                 if (!isset($this->loaded_inline[$full_path])) {
                     $contents = file_get_contents($full_path);
