@@ -244,9 +244,6 @@ class Resource
             $file_extensions = [$file_extensions];
         }
 
-        // Load the manifest.
-        $manifest = config('rev-manifest', []);
-
         // Replace dots with slashes.
         $file = str_replace('.', '/', $file);
 
@@ -306,7 +303,7 @@ class Resource
      */
     public function loadFile($file_name, $extension, $full_path = '')
     {
-        if (isset($manifest[$file_name]) || (!empty($full_path) && file_exists($full_path))) {
+        if (array_has(config('rev-manifest', []), $file_name) || (!empty($full_path) && file_exists($full_path))) {
             if (env('APP_ASSET_INLINE', false)) {
                 if (!isset($this->loaded_inline[$full_path])) {
                     $contents = file_get_contents($full_path);
