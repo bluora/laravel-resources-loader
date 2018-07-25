@@ -21,8 +21,8 @@ class JqueryUi
         $theme = empty($theme) ? config('resource.JqueryUiTheme.1') : $theme;
 
         if (!env('APP_CDN', true)) {
-            Resource::add('vendor/jquery-ui.min.js', 'header');
-            Resource::add('vendor/jquery-ui/themes/'.$theme.'/jquery-ui.min.css');
+            Resource::add('vendor/jquery-ui.js', 'header');
+            Resource::add('vendor/jquery-ui/themes/'.$theme.'/jquery-ui.css');
 
             return;
         }

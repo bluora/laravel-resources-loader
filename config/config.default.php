@@ -13,7 +13,7 @@ return [
     'FlotTooltop'             => [Bluora\LaravelResourcesLoader\Assets\FlotTooltop::class, '0.8.7'],
     'GoogleMaps'              => [Bluora\LaravelResourcesLoader\Assets\GoogleMaps::class],
     'IcheckInput'             => [Bluora\LaravelResourcesLoader\Assets\IcheckInput::class, '1.0.2'],
-    'Jquery'                  => [Bluora\LaravelResourcesLoader\Assets\Jquery::class, '2.2.4'],
+    'Jquery'                  => [Bluora\LaravelResourcesLoader\Assets\Jquery::class, '3.3.1'],
     'JqueryUi'                => [Bluora\LaravelResourcesLoader\Assets\JqueryUi::class, '1.12.0'],
     'JqueryUiTheme'           => [false, 'smoothness'],
     'Ladda'                   => [Bluora\LaravelResourcesLoader\Assets\Ladda::class, '1.0.0'],
