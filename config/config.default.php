@@ -14,7 +14,7 @@ return [
     'GoogleMaps'              => [Bluora\LaravelResourcesLoader\Assets\GoogleMaps::class],
     'IcheckInput'             => [Bluora\LaravelResourcesLoader\Assets\IcheckInput::class, '1.0.2'],
     'Jquery'                  => [Bluora\LaravelResourcesLoader\Assets\Jquery::class, '3.3.1'],
-    'JqueryUi'                => [Bluora\LaravelResourcesLoader\Assets\JqueryUi::class, '1.12.0'],
+    'JqueryUi'                => [Bluora\LaravelResourcesLoader\Assets\JqueryUi::class, '1.12.1'],
     'JqueryUiTheme'           => [false, 'smoothness'],
     'Ladda'                   => [Bluora\LaravelResourcesLoader\Assets\Ladda::class, '1.0.0'],
     'MetisMenu'               => [Bluora\LaravelResourcesLoader\Assets\MetisMenu::class, '2.5.2'],
